@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Prediction Results</title>
+    <style>
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 50px auto;
+        }
+        img {
+            width: 300px;
+            height: 300px;
+            margin: 50px auto;
+            border-radius: 15px;
+            box-shadow: 0px 0px 15px #ccc;
+        }
+        p {
+            font-size: 20px;
+            text-align: center;
+            margin: 20px 0;
+        }
+        input[type="submit"] {
+            background-color: #4CAF50; /* Green */
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+        body {
+            background-color: #f2f2f2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 80vh;
+        }
+    </style>
+</head>
+<body>
+    <form action="{{url_for('process_image')}}" method="post" enctype="multipart/form-data">
+        <input type="file" name="image">
+        <input type="submit" value="Predict">
+    </form>
+    {% if display %}
+    <h1>Prediction Results</h1>
+    <img src="{{ image }}" alt="Uploaded Image">
+    <p>Class: {{ class_ }}</p>
+    <p>Probability: {{ probability }}%</p>
+    {% endif %}
+</body>
+</html>
